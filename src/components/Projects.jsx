@@ -9,7 +9,7 @@ const projects = [
     title: 'Movie Recommender System',
     description: 'Built using Machine Learning and deployed on Streamlit. Uses collaborative filtering & content-based filtering.',
     icon: Film,
-    image: 'public/assets/Movie_recommend_system.png',
+    image: '/assets/Movie_recommend_system.png',
     link: 'https://github.com/bhanuteja-tech/Movie-Recommender-System',
     tags: ['Python', 'Machine Learning', 'Streamlit'],
   },
@@ -17,7 +17,7 @@ const projects = [
     title: 'Attendance Management System',
     description: 'Automates attendance tracking using face recognition, MySQL, and Tkinter. Features database integration & GUI interface.',
     icon: Camera,
-    image: 'public/assets/Face_recognition_image.jpg',
+    image: '/assets/Face_recognition_image.jpg',
     link: 'https://github.com/bhanuteja-tech',
     tags: ['Python', 'OpenCV', 'MySQL'],
   },
@@ -25,7 +25,7 @@ const projects = [
     title: 'Olympic Analysis Project',
     description: 'Performed EDA and visualization on Olympic datasets. Explored trends, medal distribution, and athlete statistics.',
     icon: Medal,
-    image: 'public/assets/olympic_analysis.jpeg',
+    image: '/assets/olympic_analysis.jpeg',
     link: 'https://github.com/bhanuteja-tech/olympics_data_analysis',
     tags: ['Python', 'Pandas', 'Data Visualization'],
   },
@@ -149,6 +149,7 @@ export default function Projects() {
     </section>
   );
 }
+
 
 
 
