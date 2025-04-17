@@ -2,6 +2,8 @@
 
 A modern, responsive portfolio website built with React, Vite, and Tailwind CSS, featuring interactive animations and a sleek design.
 
+🌐 **Live Site**: [View Portfolio](https://portfolio-git-main-bhanu-tejas-projects-544289e2.vercel.app)
+
 ![Portfolio Preview](public/assets/portfolio-preview.png)
 
 ## 🚀 Features
@@ -39,8 +41,8 @@ A modern, responsive portfolio website built with React, Vite, and Tailwind CSS,
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/bhanuteja-tech/portfolio.git
-   cd portfolio
+   git clone https://github.com/bhanuteja-tech/Portfolio.git
+   cd Portfolio
    ```
 
 2. **Install dependencies**
@@ -56,6 +58,7 @@ A modern, responsive portfolio website built with React, Vite, and Tailwind CSS,
 4. **Build for production**
    ```bash
    npm run build
+   npm run preview  # To preview the production build locally
    ```
 
 ## 📁 Project Structure
@@ -81,6 +84,15 @@ portfolio/
 ├── index.html
 └── package.json
 ```
+
+## 🚀 Deployment
+
+This project is deployed on Vercel. To deploy your own version:
+
+1. Fork this repository
+2. Create a Vercel account
+3. Import your forked repository
+4. Vercel will automatically detect the settings and deploy
 
 ## 🎨 Customization
 
@@ -124,6 +136,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 **Bhanuteja**
 - GitHub: [@bhanuteja-tech](https://github.com/bhanuteja-tech)
 - LinkedIn: [bhanuteja12](https://www.linkedin.com/in/bhanuteja12/)
+- Portfolio: [View Portfolio](https://portfolio-git-main-bhanu-tejas-projects-544289e2.vercel.app)
 
 ## 🙏 Acknowledgments
 
