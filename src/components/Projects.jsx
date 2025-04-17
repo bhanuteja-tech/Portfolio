@@ -4,12 +4,16 @@ import { useInView } from 'react-intersection-observer';
 import { Github, Film, Camera, Medal, ExternalLink } from 'lucide-react';
 import { createParticles } from '../utils/particles';
 
+import movieImage from '/assets/Movie_recommend_system.png';
+import faceImage from '/assets/Face_recognition_image.jpg';
+import olympicImage from '/assets/olympic_analysis.jpeg';
+
 const projects = [
   {
     title: 'Movie Recommender System',
     description: 'Built using Machine Learning and deployed on Streamlit. Uses collaborative filtering & content-based filtering.',
     icon: Film,
-    image: '/assets/Movie_recommend_system.png',
+    image: movieImage,
     link: 'https://github.com/bhanuteja-tech/Movie-Recommender-System',
     tags: ['Python', 'Machine Learning', 'Streamlit'],
   },
@@ -17,7 +21,7 @@ const projects = [
     title: 'Attendance Management System',
     description: 'Automates attendance tracking using face recognition, MySQL, and Tkinter. Features database integration & GUI interface.',
     icon: Camera,
-    image: '/assets/Face_recognition_image.jpg',
+    image: faceImage,
     link: 'https://github.com/bhanuteja-tech',
     tags: ['Python', 'OpenCV', 'MySQL'],
   },
@@ -25,7 +29,7 @@ const projects = [
     title: 'Olympic Analysis Project',
     description: 'Performed EDA and visualization on Olympic datasets. Explored trends, medal distribution, and athlete statistics.',
     icon: Medal,
-    image: '/assets/olympic_analysis.jpeg',
+    image: olympicImage,
     link: 'https://github.com/bhanuteja-tech/olympics_data_analysis',
     tags: ['Python', 'Pandas', 'Data Visualization'],
   },
@@ -88,6 +92,12 @@ export default function Projects() {
                     src={project.image}
                     alt={project.title}
                     className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
+                    onLoad={() => console.log(`Image loaded successfully: ${project.image}`)}
+                    onError={(e) => {
+                      console.error(`Failed to load image: ${project.image}`);
+                      e.target.src = '/assets/fallback-image.png';
+                    }}
+                    loading="lazy"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-transparent to-transparent opacity-70" />
                   <div className="absolute top-4 left-4">
@@ -149,6 +159,9 @@ export default function Projects() {
     </section>
   );
 }
+
+
+
 
 
 
