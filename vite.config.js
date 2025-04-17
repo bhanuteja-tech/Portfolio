@@ -16,8 +16,16 @@ export default defineConfig({
           'react-vendor': ['react', 'react-dom'],
           'animation-vendor': ['framer-motion', 'react-type-animation'],
           'three-vendor': ['three', '@react-three/fiber', '@react-three/drei']
+        },
+        assetFileNames: (assetInfo) => {
+          let extType = assetInfo.name.split('.')[1];
+          if (/png|jpe?g|svg|gif|tiff|bmp|ico/i.test(extType)) {
+            extType = 'img';
+          }
+          return `assets/${extType}/[name]-[hash][extname]`;
         }
       }
     }
   }
 });
+
