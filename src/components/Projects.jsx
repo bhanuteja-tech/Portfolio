@@ -22,7 +22,7 @@ const projects = [
     description: 'Automates attendance tracking using face recognition, MySQL, and Tkinter. Features database integration & GUI interface.',
     icon: Camera,
     image: faceImage,
-    link: 'https://github.com/bhanuteja-tech/face-recognition-attendance-system',
+    link: 'https://github.com/bhanuteja-tech/Advanced-Face-Recognition-Attendance-System',
     tags: ['Python', 'OpenCV', 'MySQL'],
   },
   {
