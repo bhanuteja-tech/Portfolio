@@ -51,22 +51,60 @@ function AnimatedBackground() {
 }
 
 export default function Hero() {
-  const [visits, setVisits] = useState(null);
+  const [totalVisits, setTotalVisits] = useState(null);
+  const [dailyVisits, setDailyVisits] = useState(null);
 
   useEffect(() => {
     const namespace = 'bhanuteja-portfolio';
-    const key = 'homepage';
-    fetch(`https://api.countapi.xyz/hit/${namespace}/${key}`)
-      .then(res => res.json())
-      .then(data => {
-        if (typeof data?.value === 'number') setVisits(data.value);
+    const totalKey = 'homepage-total';
+    const today = new Date();
+    const yyyy = today.getFullYear();
+    const mm = String(today.getMonth() + 1).padStart(2, '0');
+    const dd = String(today.getDate()).padStart(2, '0');
+    const dailyKey = `homepage-${yyyy}-${mm}-${dd}`;
+
+    // Call both counters in parallel
+    Promise.all([
+      fetch(`https://api.countapi.xyz/hit/${namespace}/${totalKey}`).then(r => r.json()).catch(() => null),
+      fetch(`https://api.countapi.xyz/hit/${namespace}/${dailyKey}`).then(r => r.json()).catch(() => null)
+    ])
+      .then(([totalRes, dailyRes]) => {
+        const hasTotal = typeof totalRes?.value === 'number';
+        const hasDaily = typeof dailyRes?.value === 'number';
+
+        if (hasTotal) setTotalVisits(totalRes.value);
+        if (hasDaily) setDailyVisits(dailyRes.value);
+
+        // Fallbacks if network failed
+        if (!hasTotal || !hasDaily) {
+          try {
+            // Total fallback
+            if (!hasTotal) {
+              const localTotal = Number(localStorage.getItem('localVisitCount') || '0') + 1;
+              localStorage.setItem('localVisitCount', String(localTotal));
+              setTotalVisits(localTotal);
+            }
+            // Daily fallback keyed by date
+            if (!hasDaily) {
+              const localDailyKey = `localVisitCount-${yyyy}-${mm}-${dd}`;
+              const localDaily = Number(localStorage.getItem(localDailyKey) || '0') + 1;
+              localStorage.setItem(localDailyKey, String(localDaily));
+              setDailyVisits(localDaily);
+            }
+          } catch {}
+        }
       })
       .catch(() => {
-        // Fallback to local count if network fails
+        // Complete local fallback
         try {
-          const local = Number(localStorage.getItem('localVisitCount') || '0') + 1;
-          localStorage.setItem('localVisitCount', String(local));
-          setVisits(local);
+          const localTotal = Number(localStorage.getItem('localVisitCount') || '0') + 1;
+          localStorage.setItem('localVisitCount', String(localTotal));
+          setTotalVisits(localTotal);
+
+          const localDailyKey = `localVisitCount-${yyyy}-${mm}-${dd}`;
+          const localDaily = Number(localStorage.getItem(localDailyKey) || '0') + 1;
+          localStorage.setItem(localDailyKey, String(localDaily));
+          setDailyVisits(localDaily);
         } catch {}
       });
   }, []);
@@ -79,7 +117,11 @@ export default function Hero() {
       <div className="absolute top-4 right-4 z-20">
         <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-gray-100 text-gray-800 shadow-sm dark:bg-gray-800 dark:text-gray-200">
           <Users className="w-4 h-4" />
-          <span className="text-sm font-medium">{visits === null ? 'Loading…' : `${visits.toLocaleString()} visits`}</span>
+          <span className="text-sm font-medium">
+            {totalVisits === null || dailyVisits === null
+              ? 'Loading…'
+              : `Today: ${dailyVisits.toLocaleString()} • Total: ${totalVisits.toLocaleString()}`}
+          </span>
         </div>
       </div>
       
