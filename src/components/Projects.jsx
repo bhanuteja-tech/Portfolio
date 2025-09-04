@@ -57,7 +57,7 @@ export default function Projects() {
     <section id="projects" className="relative py-20 overflow-hidden">
       <div className="section-bg" />
       <div className="particle-container" ref={particleContainerRef} />
-      <div className="absolute inset-0 bg-[#0a0a0a]/70" />
+      <div className="absolute inset-0 bg-white/70 dark:bg-[#0a0a0a]/70" />
       
       <div className="transform-3d">
         <motion.div
@@ -67,7 +67,7 @@ export default function Projects() {
           transition={{ duration: 0.8 }}
           className="container relative mx-auto px-4 z-10"
         >
-          <h2 className="text-4xl font-bold text-center text-white mb-12">
+          <h2 className="text-4xl font-bold text-center text-gray-900 dark:text-white mb-12">
             My <span className="gradient-text">Projects</span>
           </h2>
 
@@ -99,24 +99,24 @@ export default function Projects() {
                     }}
                     loading="lazy"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-transparent to-transparent opacity-70" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-gray-900/90 via-transparent to-transparent opacity-70 dark:from-gray-900/90" />
                   <div className="absolute top-4 left-4">
                     <project.icon className="w-8 h-8 text-white" />
                   </div>
                 </div>
                 
                 <div className="p-6">
-                  <h3 className="text-xl font-bold text-white mb-2 group-hover:text-purple-400 transition-colors duration-300">
+                  <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2 group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors duration-300">
                     {project.title}
                   </h3>
                   
-                  <p className="text-gray-400 mb-4">{project.description}</p>
+                  <p className="text-gray-600 dark:text-gray-400 mb-4">{project.description}</p>
                   
                   <div className="flex flex-wrap gap-2 mb-4">
                     {project.tags.map((tag, tagIndex) => (
                       <span
                         key={tagIndex}
-                        className="px-3 py-1 text-sm text-purple-400 bg-purple-900 bg-opacity-50 rounded-full"
+                        className="px-3 py-1 text-sm text-indigo-700 bg-indigo-100 rounded-full dark:text-purple-400 dark:bg-purple-900/50"
                       >
                         {tag}
                       </span>
@@ -124,7 +124,7 @@ export default function Projects() {
                   </div>
                   
                   <motion.div
-                    className="inline-flex items-center gap-2 text-purple-500 hover:text-purple-400 transition-colors group/link"
+                    className="inline-flex items-center gap-2 text-indigo-600 hover:text-indigo-500 dark:text-purple-500 dark:hover:text-purple-400 transition-colors group/link"
                     whileHover={{ x: 5 }}
                   >
                     <Github className="w-5 h-5" />
@@ -138,7 +138,7 @@ export default function Projects() {
 
           <motion.div
             initial={{ opacity: 0, y: 20 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.3 }}
             className="flex justify-center"
           >
@@ -146,7 +146,7 @@ export default function Projects() {
               href="https://github.com/bhanuteja-tech?tab=repositories"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-8 py-4 text-lg font-medium text-white bg-gradient-to-r from-purple-600 to-purple-800 rounded-full hover:from-purple-700 hover:to-purple-900 transition-all duration-300 shadow-lg shadow-purple-500/25"
+              className="inline-flex items-center gap-2 px-8 py-4 text-lg font-medium text-white bg-gradient-to-r from-indigo-600 to-indigo-800 rounded-full hover:from-indigo-700 hover:to-indigo-900 transition-all duration-300 shadow-lg shadow-indigo-400/25 dark:from-purple-600 dark:to-purple-800 dark:hover:from-purple-700 dark:hover:to-purple-900"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >

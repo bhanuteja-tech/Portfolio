@@ -50,7 +50,7 @@ export default function Education() {
     <section id="education" className="relative py-20 overflow-hidden">
       <div className="animated-bg" />
       <div className="particle-container" ref={particleContainerRef} />
-      <div className="absolute inset-0 bg-[#0a0a0a]/70" />
+      <div className="absolute inset-0 bg-white/70 dark:bg-[#0a0a0a]/70" />
       
       <div className="transform-3d">
         <motion.div
@@ -60,8 +60,8 @@ export default function Education() {
           transition={{ duration: 0.8 }}
           className="container relative mx-auto px-4 z-10"
         >
-          <h2 className="text-4xl font-bold text-center text-white mb-12">
-            My <span className="bg-gradient-to-r from-purple-500 via-blue-500 to-cyan-500 text-transparent bg-clip-text animate-gradient">Education</span>
+          <h2 className="text-4xl font-bold text-center text-gray-900 dark:text-white mb-12">
+            My <span className="bg-gradient-to-r from-purple-600 via-blue-600 to-cyan-600 text-transparent bg-clip-text animate-gradient dark:from-purple-500 dark:via-blue-500 dark:to-cyan-500">Education</span>
           </h2>
 
           <div className="max-w-4xl mx-auto">
@@ -73,30 +73,30 @@ export default function Education() {
                 transition={{ duration: 0.5, delay: index * 0.2 }}
                 className="mb-8 last:mb-0"
               >
-                <div className="glass-effect p-6 rounded-xl hover:bg-gray-800/50 transition-all duration-300 hover-3d">
+                <div className="glass-effect p-6 rounded-xl transition-all duration-300 hover-3d hover:bg-white/70 dark:hover:bg-gray-800/50">
                   <div className="flex items-start gap-4">
-                    <div className="p-3 bg-purple-500/20 rounded-lg">
-                      <edu.icon className="w-6 h-6 text-purple-400" />
+                    <div className="p-3 bg-indigo-500/10 rounded-lg dark:bg-purple-500/20">
+                      <edu.icon className="w-6 h-6 text-indigo-600 dark:text-purple-400" />
                     </div>
                     <div className="flex-1">
                       <div className="flex items-center gap-3">
-                        <h3 className="text-xl font-semibold text-white">
+                        <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
                           {edu.institution}
                         </h3>
                         {edu.current && (
-                          <span className="px-2 py-1 text-xs font-medium text-purple-400 bg-purple-500/20 rounded-full">
+                          <span className="px-2 py-1 text-xs font-medium text-indigo-700 bg-indigo-100 rounded-full dark:text-purple-400 dark:bg-purple-500/20">
                             Current
                           </span>
                         )}
                       </div>
-                      <p className="text-gray-300 mt-1">{edu.degree}</p>
-                      <div className="flex items-center gap-4 mt-2 text-sm text-gray-400">
+                      <p className="text-gray-700 dark:text-gray-300 mt-1">{edu.degree}</p>
+                      <div className="flex items-center gap-4 mt-2 text-sm text-gray-500 dark:text-gray-400">
                         <span>{edu.duration}</span>
                         <span>•</span>
                         <span>{edu.location}</span>
                       </div>
                       <div className="mt-2">
-                        <span className="text-purple-400 font-medium">
+                        <span className="text-indigo-600 dark:text-purple-400 font-medium">
                           {edu.score}
                         </span>
                       </div>

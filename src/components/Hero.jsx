@@ -1,7 +1,7 @@
-import React, { useState, useRef, Suspense } from 'react';
+import React, { useState, useRef, Suspense, useEffect } from 'react';
 import { TypeAnimation } from 'react-type-animation';
 import { motion } from 'framer-motion';
-import { ChevronDown, Github } from 'lucide-react';
+import { ChevronDown, Github, Users } from 'lucide-react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { Points, PointMaterial, Stars } from '@react-three/drei';
 import * as random from 'maath/random/dist/maath-random.esm';
@@ -51,11 +51,37 @@ function AnimatedBackground() {
 }
 
 export default function Hero() {
+  const [visits, setVisits] = useState(null);
+
+  useEffect(() => {
+    const namespace = 'bhanuteja-portfolio';
+    const key = 'homepage';
+    fetch(`https://api.countapi.xyz/hit/${namespace}/${key}`)
+      .then(res => res.json())
+      .then(data => {
+        if (typeof data?.value === 'number') setVisits(data.value);
+      })
+      .catch(() => {
+        // Fallback to local count if network fails
+        try {
+          const local = Number(localStorage.getItem('localVisitCount') || '0') + 1;
+          localStorage.setItem('localVisitCount', String(local));
+          setVisits(local);
+        } catch {}
+      });
+  }, []);
+
   return (
-    <div className="h-screen flex flex-col items-center justify-center relative bg-[#0a0a0a] overflow-hidden">
+    <div className="h-screen flex flex-col items-center justify-center relative bg-white text-gray-900 dark:bg-[#0a0a0a] dark:text-white overflow-hidden">
       <AnimatedBackground />
-      
-      <div className="absolute inset-0 bg-gradient-to-b from-purple-900/20 via-[#0a0a0a]/50 to-[#0a0a0a] pointer-events-none" />
+      <div className="absolute inset-0 bg-gradient-to-b from-purple-200/30 via-white/50 to-white pointer-events-none dark:from-purple-900/20 dark:via-[#0a0a0a]/50 dark:to-[#0a0a0a]" />
+
+      <div className="absolute top-4 right-4 z-20">
+        <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-gray-100 text-gray-800 shadow-sm dark:bg-gray-800 dark:text-gray-200">
+          <Users className="w-4 h-4" />
+          <span className="text-sm font-medium">{visits === null ? 'Loading…' : `${visits.toLocaleString()} visits`}</span>
+        </div>
+      </div>
       
       <motion.div
         initial={{ opacity: 0, y: 20 }}
@@ -63,15 +89,15 @@ export default function Hero() {
         transition={{ duration: 0.8 }}
         className="text-center z-10 relative px-4"
       >
-        <div className="absolute inset-0 blur-3xl bg-gradient-to-r from-purple-500/30 via-blue-500/30 to-cyan-500/30 -z-10" />
-        <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
+        <div className="absolute inset-0 blur-3xl bg-gradient-to-r from-purple-400/30 via-blue-400/30 to-cyan-400/30 -z-10 dark:from-purple-500/30 dark:via-blue-500/30 dark:to-cyan-500/30" />
+        <h1 className="text-4xl md:text-6xl font-bold text-gray-900 dark:text-white mb-6">
           Hi, I'm{' '}
-          <span className="bg-gradient-to-r from-purple-500 via-blue-500 to-cyan-500 text-transparent bg-clip-text">
+          <span className="bg-gradient-to-r from-purple-600 via-blue-600 to-cyan-600 text-transparent bg-clip-text dark:from-purple-500 dark:via-blue-500 dark:to-cyan-500">
             Bhanuteja
           </span>
         </h1>
         
-        <div className="text-xl md:text-2xl text-gray-300 h-20">
+        <div className="text-xl md:text-2xl text-gray-700 dark:text-gray-300 h-20">
           <TypeAnimation
             sequence={[
               'Data Science & Machine Learning Enthusiast 🚀',
@@ -115,8 +141,8 @@ export default function Hero() {
           transition={{ delay: 1, duration: 1 }}
           className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
         >
-          <div className="w-6 h-10 border-2 border-white rounded-full p-1">
-            <div className="w-1.5 h-1.5 bg-white rounded-full animate-scroll" />
+          <div className="w-6 h-10 border-2 border-gray-800 dark:border-white rounded-full p-1">
+            <div className="w-1.5 h-1.5 bg-gray-800 dark:bg-white rounded-full animate-scroll" />
           </div>
         </motion.div>
       </motion.div>
