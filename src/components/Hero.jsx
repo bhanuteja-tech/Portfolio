@@ -1,7 +1,7 @@
 import React, { useState, useRef, Suspense, useEffect } from 'react';
 import { TypeAnimation } from 'react-type-animation';
 import { motion } from 'framer-motion';
-import { ChevronDown, Github, Users } from 'lucide-react';
+import { ChevronDown, Github } from 'lucide-react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { Points, PointMaterial, Stars } from '@react-three/drei';
 import * as random from 'maath/random/dist/maath-random.esm';
@@ -51,70 +51,72 @@ function AnimatedBackground() {
 }
 
 export default function Hero() {
-  const [totalVisits, setTotalVisits] = useState(null);
-  const [dailyVisits, setDailyVisits] = useState(null);
+  // Visitor count functionality commented out
+  // const [totalVisits, setTotalVisits] = useState(null);
+  // const [dailyVisits, setDailyVisits] = useState(null);
 
-  useEffect(() => {
-    const namespace = 'bhanuteja-portfolio';
-    const totalKey = 'homepage-total';
-    const today = new Date();
-    const yyyy = today.getFullYear();
-    const mm = String(today.getMonth() + 1).padStart(2, '0');
-    const dd = String(today.getDate()).padStart(2, '0');
-    const dailyKey = `homepage-${yyyy}-${mm}-${dd}`;
+  // useEffect(() => {
+  //   const namespace = 'bhanuteja-portfolio';
+  //   const totalKey = 'homepage-total';
+  //   const today = new Date();
+  //   const yyyy = today.getFullYear();
+  //   const mm = String(today.getMonth() + 1).padStart(2, '0');
+  //   const dd = String(today.getDate()).padStart(2, '0');
+  //   const dailyKey = `homepage-${yyyy}-${mm}-${dd}`;
 
-    // Call both counters in parallel
-    Promise.all([
-      fetch(`https://api.countapi.xyz/hit/${namespace}/${totalKey}`).then(r => r.json()).catch(() => null),
-      fetch(`https://api.countapi.xyz/hit/${namespace}/${dailyKey}`).then(r => r.json()).catch(() => null)
-    ])
-      .then(([totalRes, dailyRes]) => {
-        const hasTotal = typeof totalRes?.value === 'number';
-        const hasDaily = typeof dailyRes?.value === 'number';
+  //   // Call both counters in parallel
+  //   Promise.all([
+  //     fetch(`https://api.countapi.xyz/hit/${namespace}/${totalKey}`).then(r => r.json()).catch(() => null),
+  //     fetch(`https://api.countapi.xyz/hit/${namespace}/${dailyKey}`).then(r => r.json()).catch(() => null)
+  //   ])
+  //     .then(([totalRes, dailyRes]) => {
+  //       const hasTotal = typeof totalRes?.value === 'number';
+  //       const hasDaily = typeof dailyRes?.value === 'number';
 
-        if (hasTotal) setTotalVisits(totalRes.value);
-        if (hasDaily) setDailyVisits(dailyRes.value);
+  //       if (hasTotal) setTotalVisits(totalRes.value);
+  //       if (hasDaily) setDailyVisits(dailyRes.value);
 
-        // Fallbacks if network failed
-        if (!hasTotal || !hasDaily) {
-          try {
-            // Total fallback
-            if (!hasTotal) {
-              const localTotal = Number(localStorage.getItem('localVisitCount') || '0') + 1;
-              localStorage.setItem('localVisitCount', String(localTotal));
-              setTotalVisits(localTotal);
-            }
-            // Daily fallback keyed by date
-            if (!hasDaily) {
-              const localDailyKey = `localVisitCount-${yyyy}-${mm}-${dd}`;
-              const localDaily = Number(localStorage.getItem(localDailyKey) || '0') + 1;
-              localStorage.setItem(localDailyKey, String(localDaily));
-              setDailyVisits(localDaily);
-            }
-          } catch {}
-        }
-      })
-      .catch(() => {
-        // Complete local fallback
-        try {
-          const localTotal = Number(localStorage.getItem('localVisitCount') || '0') + 1;
-          localStorage.setItem('localVisitCount', String(localTotal));
-          setTotalVisits(localTotal);
+  //       // Fallbacks if network failed
+  //       if (!hasTotal || !hasDaily) {
+  //         try {
+  //           // Total fallback
+  //           if (!hasTotal) {
+  //             const localTotal = Number(localStorage.getItem('localVisitCount') || '0') + 1;
+  //             localStorage.setItem('localVisitCount', String(localTotal));
+  //             setTotalVisits(localTotal);
+  //           }
+  //           // Daily fallback keyed by date
+  //           if (!hasDaily) {
+  //             const localDailyKey = `localVisitCount-${yyyy}-${mm}-${dd}`;
+  //             const localDaily = Number(localStorage.getItem(localDailyKey) || '0') + 1;
+  //             localStorage.setItem(localDailyKey, String(localDaily));
+  //             setDailyVisits(localDaily);
+  //           }
+  //         } catch {}
+  //       }
+  //     })
+  //     .catch(() => {
+  //       // Complete local fallback
+  //       try {
+  //         const localTotal = Number(localStorage.getItem('localVisitCount') || '0') + 1;
+  //         localStorage.setItem('localVisitCount', String(localTotal));
+  //         setTotalVisits(localTotal);
 
-          const localDailyKey = `localVisitCount-${yyyy}-${mm}-${dd}`;
-          const localDaily = Number(localStorage.getItem(localDailyKey) || '0') + 1;
-          localStorage.setItem(localDailyKey, String(localDaily));
-          setDailyVisits(localDaily);
-        } catch {}
-      });
-  }, []);
+  //         const localDailyKey = `localVisitCount-${yyyy}-${mm}-${dd}`;
+  //         const localDaily = Number(localStorage.getItem(localDailyKey) || '0') + 1;
+  //         localStorage.setItem(localDailyKey, String(localDaily));
+  //         setDailyVisits(localDaily);
+  //       } catch {}
+  //     });
+  // }, []);
 
   return (
     <div className="h-screen flex flex-col items-center justify-center relative bg-white text-gray-900 dark:bg-[#0a0a0a] dark:text-white overflow-hidden">
       <AnimatedBackground />
       <div className="absolute inset-0 bg-gradient-to-b from-purple-200/30 via-white/50 to-white pointer-events-none dark:from-purple-900/20 dark:via-[#0a0a0a]/50 dark:to-[#0a0a0a]" />
 
-      <div className="absolute top-4 right-4 z-20">
+      {/* Visitor count display commented out */}
+      {/* <div className="absolute top-4 right-4 z-20">
         <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-gray-100 text-gray-800 shadow-sm dark:bg-gray-800 dark:text-gray-200">
           <Users className="w-4 h-4" />
           <span className="text-sm font-medium">
@@ -123,7 +125,7 @@ export default function Hero() {
               : `Today: ${dailyVisits.toLocaleString()} • Total: ${totalVisits.toLocaleString()}`}
           </span>
         </div>
-      </div>
+      </div> */}
       
       <motion.div
         initial={{ opacity: 0, y: 20 }}
