@@ -75,7 +75,7 @@ export default function About() {
               </div>
 
               <motion.a
-                href="/assets/Subbara_BhanuTeja.pdf"
+                href="/Subbara_BhanuTeja.pdf"
                 download
                 className="inline-flex items-center gap-2 px-6 py-3 mt-6 text-lg font-medium text-white bg-gradient-to-r from-purple-600 via-blue-600 to-cyan-600 rounded-full hover:from-purple-700 hover:via-blue-700 hover:to-cyan-700 transition-all duration-300 shadow-lg shadow-indigo-400/25 dark:shadow-purple-500/25"
                 whileHover={{ scale: 1.05, boxShadow: "0 0 20px rgba(99, 102, 241, 0.5)" }}

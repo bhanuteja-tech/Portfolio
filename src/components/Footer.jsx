@@ -15,7 +15,7 @@ export default function Footer() {
           <a href="mailto:bhanutejasubbara@gmail.com" className="hover:text-gray-900 dark:hover:text-white">
             <FaEnvelope />
           </a>
-          <a href="/assets/Subbara_BhanuTeja.pdf" download className="hover:text-gray-900 dark:hover:text-white">
+          <a href="/Subbara_BhanuTeja.pdf" download className="hover:text-gray-900 dark:hover:text-white">
             <FaFileDownload />
           </a>
         </div>
