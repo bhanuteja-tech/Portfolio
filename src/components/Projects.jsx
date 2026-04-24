@@ -4,18 +4,18 @@ import { useInView } from 'react-intersection-observer';
 import { Github, Film, Camera, Medal, ExternalLink } from 'lucide-react';
 import { createParticles } from '../utils/particles';
 
-import movieImage from '../../public/assets/Movie_recommend_system.png';
-import faceImage from '../../public/assets/Face_recognition_image.jpg';
-import olympicImage from '../../public/assets/olympic_analysis.jpeg';
+import aiDataAnalystImage from '/assets/Ai_Data_Analyst.png';
+import faceImage from '/assets/Face_recognition_image.jpg';
+import olympicImage from '/assets/olympic_analysis.jpeg';
 
 const projects = [
   {
-    title: 'Movie Recommender System',
-    description: 'Built using Machine Learning and deployed on Streamlit. Uses collaborative filtering & content-based filtering.',
+    title: 'AI-Powered Data Analyst Agent',
+    description: 'Built an AI agent that analyzes datasets, automates EDA, and generates actionable insights through natural language queries.',
     icon: Film,
-    image: movieImage,
-    link: 'https://github.com/bhanuteja-tech/Movie-Recommender-System',
-    tags: ['Python', 'Machine Learning', 'Streamlit'],
+    image: aiDataAnalystImage,
+    link: 'https://github.com/bhanuteja-tech/AI-powered-Data-Analyst',
+    tags: ['Python', 'Machine Learning', 'LangChain', 'LangGraph'],
   },
   {
     title: 'Attendance Management System',

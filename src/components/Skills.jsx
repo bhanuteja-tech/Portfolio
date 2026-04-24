@@ -14,7 +14,7 @@ const skills = [
   },
   {
     category: 'Machine Learning',
-    items: ['Pandas', 'NumPy', 'Scikit-Learn'],
+    items: ['Pandas', 'NumPy', 'Scikit-Learn', 'GenAI', 'LangChain', 'LangGraph'],
     icon: Brain,
     color: 'text-green-500',
     description: 'ML libraries and frameworks',
